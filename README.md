@@ -23,7 +23,7 @@ Our F2Net is based on the encoder-decoder structure, which utilizes two Transfor
 ### 2.2. Architecture and Details
 
 <p align="center">
-[image text](图片.png)
+[image text]([图片.png](https://github.com/JaWalkery/CCSNet-BrainTumor-Segmentation/blob/cb11c972874f90a3cfd3bba0b22bc7898582c44f/%E5%9B%BE%E7%89%87.png))
     <em>
     Figure 1: Overview architecture of our segmentation model, including two models, i.e., 
     </em>
