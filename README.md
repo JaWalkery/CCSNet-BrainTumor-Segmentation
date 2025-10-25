@@ -1,84 +1,74 @@
-# CCSNet for Multi-modal Brain Tumor Segmentation
+# CCSNet
+This project provides the code and results for 'Decouple, Collaborate, Match: Prototype-Driven Cognitive Mutual Learning for Brain Tumor Segmentation',
+# Requirements
+Python 3.7+, Pytorch 1.13+, Cuda 10.2+,  <br>
+If anything goes wrong with the environment, please check requirements.txt for details.
 
-> **Authors:**
->
-> *Yu Shi*,
-> [*Tao Zhou*](https://taozh2017.github.io),
-> [*Yi Zhou*](https://cse.seu.edu.cn/2021/0303/c23024a362239/page.htm),
-> [*Yizhe Zhang*](https://yizhezhang.com/),
-> and [*Huazhu Fu*](https://hzfu.github.io/).
->
-> 
+# Architecture and Details
+   ![image](https://github.com/JaWalkery/CCSNet-BrainTumor-Segmentation/blob/60f9756c4b12f5969aaa6777968254ab6e3e2a06/%E5%9B%BE%E7%89%874.png)
+   ![image](https://github.com/JaWalkery/CCSNet-BrainTumor-Segmentation/blob/60f9756c4b12f5969aaa6777968254ab6e3e2a06/%E5%9B%BE%E7%89%873.png)
+   ![image](https://github.com/JaWalkery/CCSNet-BrainTumor-Segmentation/blob/cb11c972874f90a3cfd3bba0b22bc7898582c44f/%E5%9B%BE%E7%89%87.png)
+<img src="https://user-images.githubusercontent.com/38373305/218299628-8b7bbdc5-39b2-4d68-9cdb-828e617c0bab.png" alt="drawing" width="400" height="400"/> <img src="https://user-images.githubusercontent.com/38373305/218299686-8a7e7cae-8970-4e56-a4b1-4986b872741f.png" alt="drawing" width="400" height="400"/>
 
-## 1. Preface
+# Results
+<img src="https://user-images.githubusercontent.com/38373305/218301004-4556a1c6-b76b-44b6-aeab-1f48b15cc17d.png" alt="drawing"/>
+<img src="https://user-images.githubusercontent.com/38373305/218301024-cbf9bfbc-b3e2-4e44-89a2-106fafeda465.png" alt="drawing"/>
+<img src="https://user-images.githubusercontent.com/38373305/218301046-2fab51b0-4566-43d0-a861-9d6ee7136cb1.png" alt="drawing"/>
+<img src="https://user-images.githubusercontent.com/38373305/218301207-f40f0a86-247c-4da2-85a2-a9b17fae4ec8.png" alt="drawing"/>
 
+# Data Preparation
+ - Download the RGB-T raw data from [baidu](https://pan.baidu.com/s/1fDht3BmqIYPks_iquST5hQ), pin: sf9y / [Google drive](https://drive.google.com/file/d/1vjdD13DTh9mM69mRRRdFBbpWbmj6MSKj/view?usp=share_link) <br>
+ - Download the RGB-D raw data from [baidu](https://pan.baidu.com/s/1A-fwxAtnwMPuznn1PCATWg), pin: 7pi5 / [Google drive](https://drive.google.com/file/d/1WzTuHQJCKPE5OreanoU0N2e82Y1_VZyA/view?usp=share_link) <br>
 
-## 2. Overview
+Note that the depth maps of the raw data above are foreground is white.
+# Training & Testing
+modify the `train_root` `train_root` `save_path` path in `config.py` according to your own data path.
+- Train the LSNet:
 
-### 2.1. Introduction
-
-Automated brain tumor segmentation is crucial for aiding brain disease diagnosis and evaluating disease progress. Currently, magnetic resonance imaging (MRI) is a routinely adopted approach in the field of brain tumor segmentation that can provide different modality images. It is critical to leverage multi-modal images to boost brain tumor segmentation performance. Existing works commonly concentrate on generating a shared representation by fusing multi-modal data, while few methods take into account modality-specific characteristics. Besides, how to efficiently fuse arbitrary numbers of modalities is still a difficult task. In this study, we present a flexible fusion network (termed F2Net) for multi-modal brain tumor segmentation, which can flexibly fuse arbitrary numbers of multi-modal information to explore complementary information while maintaining the specific characteristics of each modality. 
-Our F2Net is based on the encoder-decoder structure, which utilizes two Transformer-based feature learning streams and a cross-modal shared learning network to extract individual and shared feature representations. To effectively integrate the knowledge from the multi-modality data, we propose a cross-modal feature-enhanced module (CFM) and a multi-modal collaboration module (MCM), which aims at fusing the multi-modal features into the shared learning network and incorporating the features from encoders into the shared decoder, respectively. Extensive experimental results on multiple benchmark datasets demonstrate the effectiveness of our F2Net over other state-of-the-art segmentation methods.
-
-### 2.2. Architecture and Details
-
-<p align="center">
-[image text]([图片.png](https://github.com/JaWalkery/CCSNet-BrainTumor-Segmentation/blob/cb11c972874f90a3cfd3bba0b22bc7898582c44f/%E5%9B%BE%E7%89%87.png))
-    <em>
-    Figure 1: Overview architecture of our segmentation model, including two models, i.e., 
-    </em>
-</p>
-
-
-### 2.3. Qualitative Results
-
-<p align="center">
-    <img src="imgs/results.png"/> <br />
-    <em> 
-    Figure 2: Qualitative Results.
-    </em>
-</p>
-
-## 3. Proposed Method
-
-### 3.1. Training/Testing
-
-The training and testing experiments are conducted using [PyTorch](https://github.com/pytorch/pytorch) with one NVIDIA RTX 2080Ti GPU.
-
-1. Configuring your environment (Prerequisites):
-       
-    + Installing necessary packages: `pip install -r requirements.txt`.
-
-2. Downloading necessary data:
-
-    + downloading BraTS 2020 dataset
-    which can be found from [Here](https://www.med.upenn.edu/cbica/brats2020/data.html).
-   
-    + downloading our weights
-    which can be found from [Baidu Drive](https://pan.baidu.com/s/1855rwwaaFSM0EJcIlKCtHw) (extraction code: aet5).
+    `python train.py`
     
-    + downloading PVTv2 weights and move it into `./networks/pretrained_pth/pvt_v2_b2.pth`,
-    which can be found from [GitHub](https://github.com/whai362/PVT/releases/download/v2/pvt_v2_b2.pth).
+modify the `test_path` path in `config.py` according to your own data path.
 
-3. Preprocessing:
+- Test the LSNet:   
 
-    + Before training, the dataset must be preprocessed, just run `python dateset_preprocess.py`. We provide the train 
-    dataset and test dataset in `./data/train_list.txt` and `./data/train_list.txt`.
-5. Training:
-    
-    + After processing training dataset, just run `python train.py --modalities all --model F2Net --batch_size 12` to train our model.
-      (you can set your parameters when running the code.)
+    `python test.py`
 
-6. Testing:
+Note that `task` in  `config.py`  determines which task and dataset to use.
 
-    + After you download all the pre-trained model and testing dataset, just run `python test.py --resume ./checkpoint.pth.tar` to generate the final prediction maps.
-    
-## 4. Citation
+# Evaluate tools
+- You can select one of toolboxes to get the metrics
+[CODToolbox](https://github.com/DengPingFan/CODToolbox)  / [PySODMetrics](https://github.com/lartpang/PySODMetrics)
 
-Please cite our paper if you find the work useful, thanks!
+# Saliency Maps
+- RGB-T [baidu](https://pan.baidu.com/s/1i5GwM0C0OfE5D5VLXlBkVA) pin: fxsk / [Google drive](https://drive.google.com/file/d/1ATEw8cNLHYfuCAK40VUBzcqBnMOKw-OV/view?usp=sharing)<br>
+- RGB-D [baidu](https://pan.baidu.com/s/1bAlk753MeeRG0BLMJXAzxQ) pin: 6352 / [Google drive](https://drive.google.com/file/d/1WgQlcVWg_YC4_64TaIn8JSWuzZC_FfhW/view?usp=sharing)<br>
 
+Note that we resize the testing data to the size of 224 * 224 for quicky evaluate. <br>
+please check our previous works [APNet](https://github.com/zyrant/APNet) and [CCAFNet](https://github.com/zyrant/CCAFNet).
 
+# Pretraining Models
+- RGB-T [baidu](https://pan.baidu.com/s/1aGP283gNpb3oosvbq4OSDg) pin: wnoa / [Google drive](https://drive.google.com/drive/folders/17xmRA5zhLeIIS_-1EXbhxhPoW-Xn40xl?usp=sharing) <br>
+- RGB-D [baidu](https://pan.baidu.com/s/1aGP283gNpb3oosvbq4OSDg) pin: wnoa / [Google drive](https://drive.google.com/drive/folders/17xmRA5zhLeIIS_-1EXbhxhPoW-Xn40xl?usp=sharing) <br>
 
+# Citation
+        @ARTICLE{Zhou_2023_LSNet,
+                    author={Zhou, Wujie and Zhu, Yun and Lei, Jingsheng and Yang, Rongwang and Yu, Lu},
+                    journal={IEEE Transactions on Image Processing}, 
+                    title={LSNet: Lightweight Spatial Boosting Network for Detecting Salient Objects in RGB-Thermal Images}, 
+                    year={2023},
+                    volume={32},
+                    number={},
+                    pages={1329-1340},
+                    doi={10.1109/TIP.2023.3242775}}      
+                    
+# Acknowledgement
+The implement of this project is based on the codebases bellow. <br>
+- [BBS-Net](https://github.com/zyjwuyan/BBS-Net) <br>
+- [Knowledge-Distillation-Zoo](https://github.com/AberHu/Knowledge-Distillation-Zoo) <br>
+- Fps/speed test  [MobileSal](https://github.com/yuhuan-wu/MobileSal/blob/master/speed_test.py)
+- Evaluate tools [CODToolbox](https://github.com/DengPingFan/CODToolbox)  / [PySODMetrics](https://github.com/lartpang/PySODMetrics)<br>
 
-**[⬆ back to top](#1-preface)**
+If you find this project helpful, Please also cite codebases above.
 
+# Contact
+Please drop me an email for any problems or discussion: https://wujiezhou.github.io/ (wujiezhou@163.com) or zzzyylink@gmail.com.
