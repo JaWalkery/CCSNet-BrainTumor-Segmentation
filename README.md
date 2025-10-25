@@ -2,7 +2,7 @@
 
 > **Authors:**
 >
-> *Hengyi Yang*,
+> *Yu Shi*,
 > [*Tao Zhou*](https://taozh2017.github.io),
 > [*Yi Zhou*](https://cse.seu.edu.cn/2021/0303/c23024a362239/page.htm),
 > [*Yizhe Zhang*](https://yizhezhang.com/),
@@ -11,8 +11,6 @@
 > 
 
 ## 1. Preface
-
-- This repository provides code for "_**Flexible Fusion Network for Multi-modal Brain Tumor Segmentation**_" IEEE JBHI 2023. [Paper](https://ieeexplore.ieee.org/document/10113165/) 
 
 
 ## 2. Overview
@@ -25,9 +23,9 @@ Our F2Net is based on the encoder-decoder structure, which utilizes two Transfor
 ### 2.2. Architecture and Details
 
 <p align="center">
-    <img src="imgs/F2Net.png"/> <br />
+[image text](https://github.com/LiangBoCheng/MEANet/blob/main/model/MEANet.png)
     <em>
-    Figure 1: Overview architecture of our segmentation model, including two key parts, i.e., two Transformer-based specific learning networks and a cross-modal shared learning network.
+    Figure 1: Overview architecture of our segmentation model, including two models, i.e., 
     </em>
 </p>
 
