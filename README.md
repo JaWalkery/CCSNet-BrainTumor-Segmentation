@@ -23,7 +23,7 @@ Our F2Net is based on the encoder-decoder structure, which utilizes two Transfor
 ### 2.2. Architecture and Details
 
 <p align="center">
-[image text](https://github.com/LiangBoCheng/MEANet/blob/main/model/MEANet.png)
+[image text](Architecture and Details.docx)
     <em>
     Figure 1: Overview architecture of our segmentation model, including two models, i.e., 
     </em>
