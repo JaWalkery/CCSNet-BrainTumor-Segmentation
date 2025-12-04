@@ -1,11 +1,7 @@
 import argparse
 import os
 import torch
-from networks.ss3 import DWNet
-from ss4 import DWNet
-from networks.dwm2 import DWNet
-from shmo import ACANet
-from trainer1 import Trainer
+from shmo import ANANet
 from trainer import Trainer
 
 
@@ -55,8 +51,8 @@ if __name__ == "__main__":
     print(print(torch.__version__))
     if not os.path.exists(args.save_dir):
         os.makedirs(args.save_dir)
-    if args.model == 'ACANet':
-        model = ACANet(args.num_classes).cuda()
+    if args.model == 'ANANet':
+        model = ANANet(args.num_classes).cuda()
     # if args.model == 'DWNet':
     #     model = DWNet(args.num_classes).cuda()
     trainer = Trainer(args, model)
