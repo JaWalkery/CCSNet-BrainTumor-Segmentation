@@ -31,21 +31,7 @@ modify the `test_path` path in `config.py` according to your own data path.
 # Evaluate tools
 - You can select one of toolboxes to get the metrics
 
-
-
-
 Note that we resize the testing data to the size of 224 * 224 for quicky evaluate. <br>
 
-# Pretraining Models
-
-
-# Citation
-
                     
-# Acknowledgement
 
-
-If you find this project helpful, Please also cite codebases above.
-
-# Contact
-Please drop me an email for any problems or discussion:
